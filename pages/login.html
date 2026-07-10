@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mat Capital Finance &mdash; Login</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0A0C10;
+    color: #E2E8F0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(99, 179, 237, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 179, 237, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+  }
+
+  .logo-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+
+  .logo-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #F1F5F9;
+  }
+
+  .logo-name span { color: #38BDF8; }
+
+  .logo-tagline {
+    font-size: 13px;
+    color: #64748B;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .card {
+    background: #111318;
+    border: 1px solid #1E2330;
+    border-radius: 20px;
+    padding: 36px;
+  }
+
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #F1F5F9;
+    margin-bottom: 6px;
+  }
+
+  .card-subtitle {
+    font-size: 13px;
+    color: #64748B;
+    margin-bottom: 28px;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #94A3B8;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .field input {
+    width: 100%;
+    background: #0D0F14;
+    border: 1px solid #1E2330;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 14px;
+    color: #E2E8F0;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .field input::placeholder { color: #334155; }
+
+  .field input:focus {
+    border-color: #38BDF8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+  }
+
+  .field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .field-row label { margin-bottom: 0; }
+
+  .forgot {
+    font-size: 12px;
+    color: #38BDF8;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .forgot:hover { opacity: 0.7; }
+
+  .btn {
+    width: 100%;
+    background: linear-gradient(135deg, #0EA5E9, #38BDF8);
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.1s;
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+  }
+
+  .btn:hover { opacity: 0.9; }
+  .btn:active { transform: scale(0.99); }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1E2330;
+  }
+
+  .divider span { font-size: 12px; color: #334155; }
+
+  .footer {
+    text-align: center;
+    font-size: 13px;
+    color: #475569;
+    margin-top: 24px;
+  }
+
+  .footer a {
+    color: #38BDF8;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .footer a:hover { text-decoration: underline; }
+
+  .security {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+    font-size: 11px;
+    color: #334155;
+  }
+
+  .security svg { width: 12px; height: 12px; fill: #334155; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+    </div>
+    <div class="logo-name">Mat<span>Capital</span></div>
+    <div class="logo-tagline">Controle financeiro inteligente</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Entrar na conta</div>
+    <div class="card-subtitle">Bem-vindo de volta, Matheus</div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" placeholder="seu@email.com">
+    </div>
+
+    <div class="field">
+      <div class="field-row">
+        <label>Senha</label>
+        <a href="#" class="forgot">Esqueci a senha</a>
+      </div>
+      <input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+    </div>
+
+    <button class="btn">Entrar</button>
+
+    <div class="divider"><span>ou</span></div>
+
+    <div class="footer">
+      N&atilde;o tem conta? <a href="#">Criar conta gr&aacute;tis</a>
+    </div>
+  </div>
+
+  <div class="security">
+    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+    Conex&atilde;o segura com criptografia SSL
+  </div>
+</div>
+</body>
+</html>
