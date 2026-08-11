@@ -8,5 +8,7 @@ try {
     $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($transactions);
 } catch (PDOException $e) {
-    die(json_encode(["erro" => $e->getMessage()]));
+    error_log($e->getMessage());          // detalhe técnico vai pro log do servidor (só você vê)
+    http_response_code(500);
+    echo json_encode(['erro' => 'Erro ao buscar transações']);  // mensagem genérica pro cliente
 }
