@@ -14,8 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':cor', $cor);
         $stmt->bindParam(':icone', $icone);
         $stmt->execute();
-        echo "Categoria criada com sucesso!";
+        echo json_encode(['sucesso' => true, 'mensagem' => 'Categoria criada com sucesso!']);
     } catch (PDOException $e) {
-        die("Erro ao criar categoria: " . $e->getMessage());
+        error_log($e->getMessage());          // detalhe técnico vai pro log do servidor (só você vê)
+        http_response_code(500);
+        echo json_encode(['erro' => 'Erro ao criar categoria']);  // mensagem genérica pro cliente
     }
 }
